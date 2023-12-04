@@ -20,8 +20,8 @@ const postsRouter = Router();
 postsRouter.post("/", createPostValidations, ctrlCreatePost);
 postsRouter.get("/", listPostValidations, ctrlListPosts);
 
-postsRouter.get("/:playlistId", getPostValidations, ctrlGetPost);
-postsRouter.patch("/:playlistId", updatePostValidations, ctrlUpdatePost);
-postsRouter.delete("/:playlistId", deletePostValidations, ctrlDeletePost);
+postsRouter.get("/:postId", getPostValidations, ctrlGetPost);
+postsRouter.patch("/:postId", updatePostValidations, ctrlUpdatePost);
+postsRouter.delete("/:postId", deletePostValidations, ctrlDeletePost);
 
 export { postsRouter };

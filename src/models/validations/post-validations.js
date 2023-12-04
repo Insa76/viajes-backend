@@ -17,24 +17,24 @@ export const listPostValidations = [
 ];
 
 export const getPostValidations = [
-  param("playlistId")
+  param("postId")
     .notEmpty()
-    .withMessage("El parametro { playlistId } no debe estar vacio.")
+    .withMessage("El parametro { postId } no debe estar vacio.")
     .isString()
-    .withMessage("El parametro { playlistId } debe ser un string.")
+    .withMessage("El parametro { postId } debe ser un string.")
     .custom(isValidObjectId)
-    .withMessage("El parametro { playlistId } debe ser una id valida."),
+    .withMessage("El parametro { postId } debe ser una id valida."),
   applyValidations,
 ];
 
 export const updatePostValidations = [
-  param("playlistId")
+  param("postId")
     .notEmpty()
-    .withMessage("El parametro { playlistId } no debe estar vacio.")
+    .withMessage("El parametro { postId } no debe estar vacio.")
     .isString()
-    .withMessage("El parametro { playlistId } debe ser un string.")
+    .withMessage("El parametro { postId } debe ser un string.")
     .custom(isValidObjectId)
-    .withMessage("El parametro { playlistId } debe ser una id valida."),
+    .withMessage("El parametro { postId } debe ser una id valida."),
   body("title")
     .optional()
     .notEmpty()
@@ -45,12 +45,12 @@ export const updatePostValidations = [
 ];
 
 export const deletePostValidations = [
-  param("playlistId")
+  param("postId")
     .notEmpty()
-    .withMessage("El parametro { playlistId } no debe estar vacio.")
+    .withMessage("El parametro { postId } no debe estar vacio.")
     .isString()
-    .withMessage("El parametro { playlistId } debe ser un string.")
+    .withMessage("El parametro { postId } debe ser un string.")
     .custom(isValidObjectId)
-    .withMessage("El parametro { playlistId } debe ser una id valida."),
+    .withMessage("El parametro { postId } debe ser una id valida."),
   applyValidations,
 ];

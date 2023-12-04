@@ -18,21 +18,17 @@ import {
 
 const comentRouter = Router();
 
-comentRouter.post("/:playlistId/", createComentValidations, ctrlCreateComent);
-comentRouter.get("/:playlistId/", listComentValidations, ctrlListComents);
+comentRouter.post("/:postId/", createComentValidations, ctrlCreateComent);
+comentRouter.get("/:postId/", listComentValidations, ctrlListComents);
 
-comentRouter.get(
-  "/:playlistId/:musicId",
-  getComentValidations,
-  ctrlGetComentById
-);
+comentRouter.get("/:postId/:comentId", getComentValidations, ctrlGetComentById);
 comentRouter.patch(
-  "/:playlistId/:musicId",
+  "/:postId/:comentId",
   updateComentValidations,
   ctrlUpdateComent
 );
 comentRouter.delete(
-  "/:playlistId/:musicId",
+  "/:postId/:comentId",
   deleteComentValidations,
   ctrlDeleteComent
 );

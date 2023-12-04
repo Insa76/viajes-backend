@@ -1,5 +1,5 @@
 import { ComentModel } from "../models/Coment.js";
-import { PostsModel } from "../models/Post.js";
+import { PostModel } from "../models/Post.js";
 import { isAuthor } from "./post.controller.js";
 
 export const ctrlCreateComent = async (req, res) => {
@@ -9,7 +9,7 @@ export const ctrlCreateComent = async (req, res) => {
   const isPostAuthor = await isAuthor({ postId, userId });
 
   if (!isPostAuthor) {
-    return res.status(403).json({ error: "User is not the playlist author" });
+    return res.status(403).json({ error: "User is not the post author" });
   }
 
   try {
@@ -20,7 +20,7 @@ export const ctrlCreateComent = async (req, res) => {
 
     await coment.save();
 
-    await PostsModel.findOneAndUpdate(
+    await PostModel.findOneAndUpdate(
       { _id: postId },
       { $push: { coments: coment._id } }
     );
@@ -28,7 +28,7 @@ export const ctrlCreateComent = async (req, res) => {
     res.status(201).json(coment);
   } catch (error) {
     console.log(error);
-    res.status(500).json({ error: "Couldn't create music" });
+    res.status(500).json({ error: "Couldn't create coment" });
   }
 };
 
@@ -39,18 +39,18 @@ export const ctrlListComents = async (req, res) => {
   const isPostAuthor = await isAuthor({ postId, userId });
 
   if (!isPostAuthor) {
-    return res.status(403).json({ error: "User is not the playlist author" });
+    return res.status(403).json({ error: "User is not the post author" });
   }
 
   try {
     const coments = await ComentModel.find({ post: postId }, ["-__v"]).populate(
       "post",
-      ["-musics", "-author", "-__v"]
+      ["-coments", "-author", "-__v"]
     );
 
-    res.status(200).json(musics);
+    res.status(200).json(coments);
   } catch (error) {
-    res.status(500).json({ error: "Couldn't get musics" });
+    res.status(500).json({ error: "Couldn't get coments" });
   }
 };
 
@@ -61,7 +61,7 @@ export const ctrlGetComentById = async (req, res) => {
   const isPostAuthor = await isAuthor({ postId, userId });
 
   if (!isPostAuthor) {
-    return res.status(403).json({ error: "User is not the playlist author" });
+    return res.status(403).json({ error: "User is not the post author" });
   }
 
   try {
@@ -70,11 +70,12 @@ export const ctrlGetComentById = async (req, res) => {
       post: postId,
     }).populate("post");
 
-    if (!coment) return res.status(404).json({ error: "Music doesn't exist" });
+    if (!coment)
+      return res.status(404).json({ error: "Comment doesn't exist" });
 
     res.status(200).json(music);
   } catch (error) {
-    res.status(500).json({ error: "Couldn't get music" });
+    res.status(500).json({ error: "Couldn't get comment" });
   }
 };
 
@@ -85,14 +86,14 @@ export const ctrlUpdateComent = async (req, res) => {
   const isPostAuthor = await isAuthor({ postId, userId });
 
   if (!isPostAuthor) {
-    return res.status(403).json({ error: "User is not the playlist author" });
+    return res.status(403).json({ error: "User is not the post author" });
   }
 
   try {
     const coment = await ComentModel.findOne({ _id: comentId });
 
     if (!coment) {
-      return res.status(404).json({ error: "Music doesn't exist" });
+      return res.status(404).json({ error: "Comment doesn't exist" });
     }
 
     coment.set(req.body);
@@ -101,7 +102,7 @@ export const ctrlUpdateComent = async (req, res) => {
 
     res.status(200).json(coment);
   } catch (error) {
-    res.status(500).json({ error: "Couldn't update music" });
+    res.status(500).json({ error: "Couldn't update comment" });
   }
 };
 
@@ -112,19 +113,19 @@ export const ctrlDeleteComent = async (req, res) => {
   const isPostAuthor = await isAuthor({ postId, userId });
 
   if (!isPostAuthor) {
-    return res.status(403).json({ error: "User is not the playlist author" });
+    return res.status(403).json({ error: "User is not the post author" });
   }
 
   try {
     await ComentModel.findOneAndDelete({ _id: comentId, post: postId });
 
-    await PostsModel.findOneAndUpdate(
+    await PostModel.findOneAndUpdate(
       { _id: postId },
       { $pull: { coments: comentId } }
     );
 
     res.status(200).json();
   } catch (error) {
-    res.status(500).json({ error: "Couldn't delete music" });
+    res.status(500).json({ error: "Couldn't delete comment" });
   }
 };

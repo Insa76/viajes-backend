@@ -3,23 +3,23 @@ import { isValidObjectId } from "mongoose";
 import { applyValidations } from "../../middlewares/apply-validations.js";
 
 export const createComentValidations = [
-  param("playlistId")
+  param("postId")
     .notEmpty()
-    .withMessage("El parametro { playListId } no debe estar vacio.")
+    .withMessage("El parametro { postId } no debe estar vacio.")
     .isString()
-    .withMessage("El parametro { playListId } debe ser un string.")
+    .withMessage("El parametro { postId } debe ser un string.")
     .custom(isValidObjectId)
-    .withMessage("El parametro { playListId } debe ser una id valida."),
+    .withMessage("El parametro { postId } debe ser una id valida."),
   body("name")
     .notEmpty()
     .withMessage("El campo { name } no debe estar vacio.")
     .isString()
     .withMessage("El campo { name } debe ser un string."),
-  body("artist")
+  body("description")
     .notEmpty()
-    .withMessage("El campo { artist } no debe estar vacio.")
+    .withMessage("El campo { description } no debe estar vacio.")
     .isString()
-    .withMessage("El campo { artist } debe ser un string."),
+    .withMessage("El campo { description } debe ser un string."),
   body("year")
     .optional()
     .isNumeric()
@@ -28,79 +28,79 @@ export const createComentValidations = [
 ];
 
 export const listComentValidations = [
-  param("playlistId")
+  param("postId")
     .notEmpty()
-    .withMessage("El parametro { playListId } no debe estar vacio.")
+    .withMessage("El parametro { postId } no debe estar vacio.")
     .isString()
-    .withMessage("El parametro { playListId } debe ser un string.")
+    .withMessage("El parametro { postId } debe ser un string.")
     .custom(isValidObjectId)
-    .withMessage("El parametro { playListId } debe ser una id valida."),
+    .withMessage("El parametro { postId } debe ser una id valida."),
   applyValidations,
 ];
 
 export const deleteComentValidations = [
-  param("playlistId")
+  param("postId")
     .notEmpty()
-    .withMessage("El parametro { playListId } no debe estar vacio.")
+    .withMessage("El parametro { postId } no debe estar vacio.")
     .isString()
-    .withMessage("El parametro { playListId } debe ser un string.")
+    .withMessage("El parametro { postId } debe ser un string.")
     .custom(isValidObjectId)
-    .withMessage("El parametro { playListId } debe ser una id valida."),
-  param("musicId")
+    .withMessage("El parametro { postId } debe ser una id valida."),
+  param("comentId")
     .notEmpty()
-    .withMessage("El parametro { musicId } no debe estar vacio.")
+    .withMessage("El parametro { comentId } no debe estar vacio.")
     .isString()
-    .withMessage("El parametro { musicId } debe ser un string.")
+    .withMessage("El parametro { comentId } debe ser un string.")
     .custom(isValidObjectId)
-    .withMessage("El parametro { musicId } debe ser una id valida."),
+    .withMessage("El parametro { comentId } debe ser una id valida."),
   applyValidations,
 ];
 
 export const getComentValidations = [
-  param("playlistId")
+  param("postId")
     .notEmpty()
-    .withMessage("El parametro { playListId } no debe estar vacio.")
+    .withMessage("El parametro { postId } no debe estar vacio.")
     .isString()
-    .withMessage("El parametro { playListId } debe ser un string.")
+    .withMessage("El parametro { postId } debe ser un string.")
     .custom(isValidObjectId)
-    .withMessage("El parametro { playListId } debe ser una id valida."),
-  param("musicId")
+    .withMessage("El parametro { postId } debe ser una id valida."),
+  param("comentId")
     .notEmpty()
-    .withMessage("El parametro { musicId } no debe estar vacio.")
+    .withMessage("El parametro { comentId } no debe estar vacio.")
     .isString()
-    .withMessage("El parametro { musicId } debe ser un string.")
+    .withMessage("El parametro { comentId } debe ser un string.")
     .custom(isValidObjectId)
-    .withMessage("El parametro { musicId } debe ser una id valida."),
+    .withMessage("El parametro { comentId } debe ser una id valida."),
   applyValidations,
 ];
 
 export const updateComentValidations = [
-  param("playlistId")
+  param("postId")
     .notEmpty()
-    .withMessage("El parametro { playListId } no debe estar vacio.")
+    .withMessage("El parametro { postId } no debe estar vacio.")
     .isString()
-    .withMessage("El parametro { playListId } debe ser un string.")
+    .withMessage("El parametro { postId } debe ser un string.")
     .custom(isValidObjectId)
-    .withMessage("El parametro { playListId } debe ser una id valida."),
-  param("musicId")
+    .withMessage("El parametro { postId } debe ser una id valida."),
+  param("comentId")
     .notEmpty()
-    .withMessage("El parametro { musicId } no debe estar vacio.")
+    .withMessage("El parametro { comentId } no debe estar vacio.")
     .isString()
-    .withMessage("El parametro { musicId } debe ser un string.")
+    .withMessage("El parametro { comentId } debe ser un string.")
     .custom(isValidObjectId)
-    .withMessage("El parametro { musicId } debe ser una id valida."),
+    .withMessage("El parametro { comentId } debe ser una id valida."),
   body("name")
     .optional()
     .notEmpty()
     .withMessage("El campo { name } no debe estar vacio.")
     .isString()
     .withMessage("El campo { name } debe ser un string."),
-  body("artist")
+  body("description")
     .optional()
     .notEmpty()
-    .withMessage("El campo { artist } no debe estar vacio.")
+    .withMessage("El campo { description } no debe estar vacio.")
     .isString()
-    .withMessage("El campo { artist } debe ser un string."),
+    .withMessage("El campo { description } debe ser un string."),
   body("year")
     .optional()
     .isNumeric()

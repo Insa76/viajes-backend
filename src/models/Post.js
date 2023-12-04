@@ -9,7 +9,7 @@ const PostSchema = new Schema(
     coments: [
       {
         type: Schema.Types.ObjectId,
-        ref: "Coments",
+        ref: "Coment",
       },
     ],
     author: {
@@ -24,4 +24,4 @@ const PostSchema = new Schema(
   }
 );
 
-export const PostsModel = model("Post", PostSchema);
+export const PostModel = model("Post", PostSchema);

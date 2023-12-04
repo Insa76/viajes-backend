@@ -26,8 +26,8 @@ app.use(helmet());
 app.use(morgan("dev"));
 
 app.use("/api/auth", authRouter);
-app.use("/api/playlist", authHeader, validateToken, postsRouter);
-app.use("/api/musics", authHeader, validateToken, comentRouter);
+app.use("/api/post", authHeader, validateToken, postsRouter);
+app.use("/api/coments", authHeader, validateToken, comentRouter);
 
 app.listen(config.port, async () => {
   await startConnection({ uri: config.mongo, database: config.database });
