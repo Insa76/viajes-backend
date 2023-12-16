@@ -5,10 +5,12 @@ export const ctrlCreatePost = async (req, res) => {
   const userId = req.user._id;
 
   try {
-    const { title } = req.body;
+    const { title, desc, photo } = req.body;
 
     const post = new PostModel({
+      photo,
       title,
+      desc,
       author: userId,
     });
 

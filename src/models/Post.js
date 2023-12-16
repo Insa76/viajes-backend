@@ -2,7 +2,15 @@ import { Schema, model } from "mongoose";
 
 const PostSchema = new Schema(
   {
+    photo: {
+      type: String,
+      required: false,
+    },
     title: {
+      type: String,
+      required: true,
+    },
+    desc: {
       type: String,
       required: true,
     },

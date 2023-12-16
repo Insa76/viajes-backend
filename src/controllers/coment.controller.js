@@ -45,7 +45,7 @@ export const ctrlListComents = async (req, res) => {
   try {
     const coments = await ComentModel.find({ post: postId }, ["-__v"]).populate(
       "post",
-      ["-coments", "-author", "-__v"]
+      ["coments", "-author", "-__v"]
     );
 
     res.status(200).json(coments);

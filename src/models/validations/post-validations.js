@@ -9,6 +9,12 @@ export const createPostValidations = [
     .isString()
     .withMessage("El campo { title } debe ser un string."),
   applyValidations,
+  body("desc")
+    .notEmpty()
+    .withMessage("El campo { desc } no debe estar vacio.")
+    .isString()
+    .withMessage("El campo { desc } debe ser un string."),
+  applyValidations,
 ];
 
 export const listPostValidations = [

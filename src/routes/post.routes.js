@@ -18,6 +18,7 @@ import {
 const postsRouter = Router();
 
 postsRouter.post("/", createPostValidations, ctrlCreatePost);
+postsRouter.post("/upload", createPostValidations, ctrlCreatePost);
 postsRouter.get("/", listPostValidations, ctrlListPosts);
 
 postsRouter.get("/:postId", getPostValidations, ctrlGetPost);
